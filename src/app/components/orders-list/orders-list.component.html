@@ -1,0 +1,28 @@
+<table class="table table-bordered">
+  <thead class="thead thead-color">
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Date</th>
+      <th scope="col">Address</th>
+      <th scope="col">Supplier Details</th>
+      <th scope="col">Company Details</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Activity</th>
+    </tr>
+  </thead>
+  <tbody class="tbody-color">
+    <tr *ngFor="let order of orders; let i = index">
+      <!-- <th scope="row">1</th> -->
+      <td>{{order.orderId}}</td>
+      <td>{{order.date}}</td>
+      <td>{{order.address}}</td>
+      <td>{{order.supplierDetails}}</td>
+      <td>{{order.companyDetails}}</td>
+      <td>{{order.qty}}</td>
+      <td class="td-btn-com">
+        <button class="td-btn" (click)="updateOrder(order.orderId)" style="background-color: rgb(15, 181, 15); color: white;">Update</button>
+        <button class="td-btn" (click)="removeOrder(order.orderId)" style="background-color: rgb(238, 49, 49); color: white;" >Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

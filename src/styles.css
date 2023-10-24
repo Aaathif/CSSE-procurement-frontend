@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap/dist/css/bootstrap.css";
+
+
+body {
+    background-image: url('https://blog.cmecorp.com/hubfs/Healthcare%20Equipment%20Procurement%20Tips%20for%20New%20Construction.jpg') !important;
+    background-size: cover;
+}

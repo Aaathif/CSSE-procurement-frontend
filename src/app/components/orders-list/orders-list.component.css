@@ -1,0 +1,18 @@
+.td-btn-com {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.td-btn {
+    border: none;
+    border-radius: 5px;
+}
+
+.thead-color {
+    background-color: rgb(207, 205, 189);
+}
+
+.tbody-color {
+    background-color: rgba(207, 205, 189, 0.6);
+}

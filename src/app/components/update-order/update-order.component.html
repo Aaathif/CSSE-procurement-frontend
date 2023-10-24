@@ -1,0 +1,63 @@
+
+  <div class="container">
+    <div class="form-container">
+      <div class="form-group">
+        <label class="input-label">Order ID</label>
+        <input 
+          class="input-field" 
+          id="id" 
+          required 
+          name="id"
+          [(ngModel)]="currentOrder.orderId" />
+      </div>
+      <div class="form-group">
+        <label class="input-label">Date</label>
+        <input 
+          class="input-field" 
+          id="date" 
+          required 
+          name="date"
+          [(ngModel)]="currentOrder.date" />
+      </div>
+      <div class="form-group">
+        <label class="input-label">Address</label>
+        <input 
+          class="input-field" 
+          id="address" 
+          required 
+          name="address"
+          [(ngModel)]="currentOrder.address" />
+      </div>
+      <div class="form-group">
+        <label class="input-label">Supplier Details</label>
+        <input 
+          class="input-field" 
+          id="supplierDetails" 
+          required 
+          name="supplierDetails"
+          [(ngModel)]="currentOrder.supplierDetails" />
+      </div>
+      <div class="form-group">
+        <label class="input-label">Company Details</label>
+        <input 
+          class="input-field" 
+          id="companyDetails" 
+          required 
+          name="companyDetails"
+          [(ngModel)]="currentOrder.companyDetails" />
+      </div>
+      <div class="form-group">
+        <label class="input-label">Quantity</label>
+        <input 
+          class="input-field" 
+          id="qty" 
+          required 
+          name="qty"
+          [(ngModel)]="currentOrder.qty" />
+      </div>
+  
+      <button 
+        (click)="updateOrder()"
+        class="btn mt-4 form-btn">Update</button>
+    </div>
+</div>
