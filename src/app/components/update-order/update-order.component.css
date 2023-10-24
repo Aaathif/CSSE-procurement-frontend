@@ -17,6 +17,14 @@
   flex-wrap: wrap; */
 }
 
+.form-error{
+  text-align: end;
+  margin-right: 1rem;
+  color: red;
+  font-weight: 500;
+  font-style: italic;
+}
+
 .form-group {
   display: flex;
   width: 100%;

@@ -4,6 +4,7 @@ import { Order } from 'src/app/models/order.model';
 import { OrderService } from 'src/app/services/order.service';
 
 import { NgToastService } from 'ng-angular-popup';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add-order',
@@ -20,6 +21,16 @@ export class AddOrderComponent implements OnInit {
     companyDetails: '',
     qty: ''
   }
+
+  form = {
+    orderId: '',
+    date: '',
+    address: '',
+    supplierDetails: '',
+    companyDetails: '',
+    qty: ''
+  }
+
   submitted = false;
 
   constructor(
@@ -70,6 +81,15 @@ export class AddOrderComponent implements OnInit {
       companyDetails: '',
       qty: '',
     };
+  }
+
+  onSubmit(): void {
+    console.log(JSON.stringify(this.form, null, 2));
+    this.saveOrder()
+  }
+
+  onReset(form: NgForm): void {
+    form.reset();
   }
 
 }

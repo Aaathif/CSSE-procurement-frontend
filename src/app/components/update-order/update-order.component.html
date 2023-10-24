@@ -1,63 +1,139 @@
 
   <div class="container">
-    <div class="form-container">
-      <div class="form-group">
-        <label class="input-label">Order ID</label>
-        <input 
-          class="input-field" 
-          id="id" 
-          required 
-          name="id"
-          [(ngModel)]="currentOrder.orderId" />
+    <form 
+      name="form"
+      #f="ngForm"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      novalidate
+      class="form-container">
+
+      <!-- ------------------------------------------------------------------------------------- -->
+
+    <div class="form-group">
+      <label class="input-label">Order ID</label>
+      <input 
+        class="input-field" 
+        id="id" 
+        required 
+        name="id"
+        [(ngModel)]="currentOrder.orderId" />
+    </div>
+
+    <!-- ------------------------------------------------------------------------------------- -->
+
+    <div *ngIf="f.submitted && date.errors" class="form-error">
+      <div *ngIf="date.errors['required']">Date is required</div>
+    </div>
+    <div class="form-group">
+      <label class="input-label">Date</label>
+      <input 
+        #date="ngModel"
+        type="date"
+        class="input-field" 
+        id="date" 
+        required 
+        name="date"
+        [(ngModel)]="currentOrder.date"
+        [ngClass]="{ 'is-invalid': f.submitted && date.errors }" />
+    </div>
+
+    <!-- ------------------------------------------------------------------------------------- -->
+
+    <div *ngIf="f.submitted && address.errors" class="form-error">
+      <div *ngIf="address.errors['required']">Address is required</div>
+      <div *ngIf="address.errors['minlength']">
+        Address must be at least 10 characters
       </div>
-      <div class="form-group">
-        <label class="input-label">Date</label>
-        <input 
-          class="input-field" 
-          id="date" 
-          required 
-          name="date"
-          [(ngModel)]="currentOrder.date" />
+      <div *ngIf="address.errors['maxlength']">
+        Address must be at most 50 characters
       </div>
-      <div class="form-group">
-        <label class="input-label">Address</label>
-        <input 
-          class="input-field" 
-          id="address" 
-          required 
-          name="address"
-          [(ngModel)]="currentOrder.address" />
+    </div>
+    <div class="form-group">
+      <label class="input-label">Address</label>
+      <input 
+        minlength="6"
+        maxlength="50"
+        #address="ngModel"
+        class="input-field" 
+        id="address" 
+        required 
+        name="address"
+        [(ngModel)]="currentOrder.address" 
+        [ngClass]="{ 'is-invalid': f.submitted && address.errors }"/>
+    </div>
+
+    <!-- ------------------------------------------------------------------------------------- -->
+
+    <div *ngIf="f.submitted && supplierDetails.errors" class="form-error">
+      <div *ngIf="supplierDetails.errors['required']">Supplier Details</div>
+      <div *ngIf="supplierDetails.errors['minlength']">
+        Supplier Details must be at least 10 characters
       </div>
-      <div class="form-group">
-        <label class="input-label">Supplier Details</label>
-        <input 
-          class="input-field" 
-          id="supplierDetails" 
-          required 
-          name="supplierDetails"
-          [(ngModel)]="currentOrder.supplierDetails" />
+      <div *ngIf="supplierDetails.errors['maxlength']">
+        Supplier Details must be at most 30 characters
       </div>
-      <div class="form-group">
-        <label class="input-label">Company Details</label>
-        <input 
-          class="input-field" 
-          id="companyDetails" 
-          required 
-          name="companyDetails"
-          [(ngModel)]="currentOrder.companyDetails" />
+    </div>
+    <div class="form-group">
+      <label class="input-label">Supplier Details</label>
+      <input 
+        minlength="6"
+        maxlength="40"
+        #supplierDetails="ngModel"
+        class="input-field" 
+        id="supplierDetails" 
+        required 
+        name="supplierDetails"
+        [(ngModel)]="currentOrder.supplierDetails"
+        [ngClass]="{ 'is-invalid': f.submitted && supplierDetails.errors }" />
+    </div>
+
+    <!-- ------------------------------------------------------------------------------------- -->
+
+    <div *ngIf="f.submitted && companyDetails.errors" class="form-error">
+      <div *ngIf="companyDetails.errors['required']">Company Details is required</div>
+      <div *ngIf="companyDetails.errors['minlength']">
+        Company Details must be at least 10 characters
       </div>
-      <div class="form-group">
-        <label class="input-label">Quantity</label>
-        <input 
-          class="input-field" 
-          id="qty" 
-          required 
-          name="qty"
-          [(ngModel)]="currentOrder.qty" />
+      <div *ngIf="companyDetails.errors['maxlength']">
+        Company Details must be at most 30 characters
       </div>
+    </div>
+    <div class="form-group">
+      <label class="input-label">Company Details</label>
+      <input 
+        minlength="6"
+        maxlength="30"
+        #companyDetails="ngModel"
+        class="input-field" 
+        id="companyDetails" 
+        required 
+        name="companyDetails"
+        [(ngModel)]="currentOrder.companyDetails"
+        [ngClass]="{ 'is-invalid': f.submitted && companyDetails.errors }" />
+    </div>
+
+    <!-- ------------------------------------------------------------------------------------- -->
+
+    <div *ngIf="f.submitted && qty.errors" class="form-error">
+      <div *ngIf="qty.errors['required']">Quantity is required</div>
+    </div>
+    <div class="form-group">
+      <label class="input-label">Quantity</label>
+      <input
+        type="number"
+        #qty="ngModel"
+        class="input-field" 
+        id="qty" 
+        required 
+        name="qty"
+        [(ngModel)]="currentOrder.qty"
+        [ngClass]="{ 'is-invalid': f.submitted && qty.errors }" />
+    </div>
+
+    <!-- ------------------------------------------------------------------------------------- -->
   
       <button 
-        (click)="updateOrder()"
+        type="submit"
         class="btn mt-4 form-btn">Update</button>
-    </div>
+    </form>
 </div>

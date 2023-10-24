@@ -4,6 +4,7 @@ import { Order } from 'src/app/models/order.model';
 import { OrderService } from 'src/app/services/order.service';
 
 import { NgToastService } from 'ng-angular-popup';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-update-order',
@@ -21,6 +22,17 @@ export class UpdateOrderComponent implements OnInit {
     companyDetails: '',
     qty: ''
   }
+
+  form = {
+    orderId: '',
+    date: '',
+    address: '',
+    supplierDetails: '',
+    companyDetails: '',
+    qty: ''
+  }
+
+  submitted = false;
 
   message = '';
 
@@ -60,6 +72,7 @@ export class UpdateOrderComponent implements OnInit {
           console.log(res);
           this.message = res.message ? res.message : 'This Order was updated successfully!';
           // alert('Order details updated successfully');
+          this.submitted = true;
           this.toast.success({detail: "Success Message!", summary: "Updated Successfully", duration: 5000})
           this.router.navigate(['/orders']);
         },
@@ -80,5 +93,15 @@ export class UpdateOrderComponent implements OnInit {
         error: (e) => console.error(e)
       });
   }
+
+  onSubmit(): void {
+    console.log(JSON.stringify(this.form, null, 2));
+    this.updateOrder()
+  }
+
+  onReset(form: NgForm): void {
+    form.reset();
+  }
+
 
 }
