@@ -11,6 +11,7 @@ import { AddOrderComponent } from './components/add-order/add-order.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { OrdersListComponent } from './components/orders-list/orders-list.component';
+import { NgToastModule } from 'ng-angular-popup'; 
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { OrdersListComponent } from './components/orders-list/orders-list.compon
     OrdersListComponent
   ],
   imports: [
+    NgToastModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,

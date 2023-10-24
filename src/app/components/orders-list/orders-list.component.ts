@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Order } from 'src/app/models/order.model';
 import { OrderService } from 'src/app/services/order.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-orders-list',
@@ -16,9 +17,12 @@ export class OrdersListComponent implements OnInit {
 
 
 
-  constructor(private orderService: OrderService,
+  constructor(
+    private orderService: OrderService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private toast: NgToastService
+  ) { }
 
 
   ngOnInit(): void {
@@ -64,9 +68,13 @@ export class OrdersListComponent implements OnInit {
         next: (res) => {
           console.log(res);
           this.refreshList();
-          alert('Order details removed successfully');
+          // alert('Order details removed successfully');
+          this.toast.success({ detail: "Success Message!", summary: "Order details removed successfully", duration: 5000 })
         },
-        error: (e) => console.error(e)
+        error: (e) => {
+          console.error(e)
+          this.toast.error({detail: "Failed Message!", summary: "Order details removed Failed", duration: 5000})
+        }
       });
   }
 

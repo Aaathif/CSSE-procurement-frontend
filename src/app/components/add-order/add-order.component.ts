@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Order } from 'src/app/models/order.model';
 import { OrderService } from 'src/app/services/order.service';
 
-import { ToastrService, IndividualConfig } from 'ngx-toastr';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-add-order',
@@ -26,7 +26,7 @@ export class AddOrderComponent implements OnInit {
     private orderService: OrderService,
     private route: ActivatedRoute,
     private router: Router,
-    private toastr: ToastrService
+    private toast: NgToastService
   ) { }
 
   ngOnInit(): void {
@@ -48,29 +48,18 @@ export class AddOrderComponent implements OnInit {
         next: (res) => {
           console.log(res);
           this.submitted = true;
-          alert('Order details inserted successfully');
-          this.showCustomToast();
+          // alert('Order details inserted successfully');
+          this.toast.success({detail: "Success Message!", summary: "Added Successfully", duration: 5000})
           this.router.navigate(['/orders']);
         },
-        error: (e) => console.error(e)
+        error: (e) => {
+          console.error(e)
+          this.toast.error({detail: "Failed Message!", summary: "Adding Error Happened", duration: 5000})
+        }
+        
       });
   }
 
-  showCustomToast() {
-    const toastOptions: Partial<IndividualConfig> = {
-      enableHtml: true,
-      closeButton: true,
-      tapToDismiss: false,
-      timeOut: 5000,
-      extendedTimeOut: 2000,
-    };
-
-    this.toastr.success(
-      '<div style="background-color: #4caf50; color: #ffffff; padding: 10px 20px; border-radius: 5px; font-weight: bold;">This is a custom styled toast</div>',
-      'Custom Toast',
-      toastOptions
-    );
-  }
 
   newOrder(): void {
     this.submitted = false;
